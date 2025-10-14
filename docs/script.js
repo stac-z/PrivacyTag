@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log("BLOOP website loaded - PrivacyTag™ LLC");
     // Add a subtle hover effect hint for links
