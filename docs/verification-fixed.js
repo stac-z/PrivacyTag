@@ -21,6 +21,24 @@ function showVerificationCode() {
     }
 }
 
+let currentUsername = "defaultUser"; // Replace with dynamic value
+function showVerificationCode() {
+    console.log('Show verification code clicked');
+    const verificationData = localStorage.getItem(`verification_${currentUsername}`);
+    const codeDisplay = document.getElementById('verification-code');
+    const showBtn = document.getElementById('show-verification-btn');
+    if (verificationData && codeDisplay && showBtn) {
+        const data = JSON.parse(verificationData);
+        codeDisplay.textContent = data.verificationCode || 'No code available';
+        codeDisplay.classList.remove('hidden');
+        showBtn.textContent = 'Hide Verification Code';
+        showBtn.onclick = hideVerificationCode;
+        console.log('Verification code displayed:', data.verificationCode);
+    } else {
+        console.log('Missing elements or data');
+    }
+}
+
 // Hide verification code
 function hideVerificationCode() {
     console.log('Hide verification code clicked');

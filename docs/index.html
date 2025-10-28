@@ -1,28 +1,58 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon | PrivacyTag™ LLC</title>
+    <title>PrivacyTag™ LLC - Coming Soon</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%2300ff00' opacity='0.8'/%3E%3Ccircle cx='50' cy='50' r='25' fill='%2300ff00' opacity='0.6'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%2300ff00' opacity='1'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="username-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="stars"></div>
     <div class="container">
-        <div class="earth-container">
-            <div class="earth"></div>
+        <div class="privacy-aura-container">
+            <div class="privacy-aura"></div>
+            <div class="privacy-core"></div>
+            <div class="privacy-pulse"></div>
+                <div class="comment-indicator">Click to add your aura</div>
         </div>
         
         <h1 class="coming-soon">Coming Soon</h1>
-        <p class="subtitle">A New Type Of Privacy</p>
+        <p class="subtitle">A New Type of Privacy</p>
         
-            <div class="contacts">
-                <a href="https://github.com/stac-z/PrivacyTag" target="_blank" class="github-link">View on GitHub</a>
+        <div class="contacts">
+            <a href="https://github.com/stac-z/PrivacyTag" target="_blank" class="github-link">View on GitHub</a>
+            <a href="https://x.com/tagprivacy" target="_blank" class="x-link">Follow on X</a>
+        </div>
+        
+        <div class="aura-counter">
+            <div class="aura-points">Aura Points: <span id="aura-count">0</span></div>
+            <div class="username-display">User: <span id="username-display">Guest</span></div>
+            <div class="verification-display">
+                <button id="show-verification-btn" class="verification-btn">Show Verification Code</button>
+                <div id="verification-code" class="verification-code hidden"></div>
             </div>
+        </div>
+        
+        <!-- Username Modal -->
+        <div id="username-modal" class="username-modal-overlay hidden">
+            <div class="username-modal">
+                <div class="username-header">
+                    <h3>Choose Your Username</h3>
+                </div>
+                <div class="username-body">
+                    <input type="text" id="username-input" placeholder="Enter your username" maxlength="20">
+                    <div class="username-footer">
+                        <button id="save-username-btn" class="save-username-btn">Save Username</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
+    <script src="verification-fixed.js"></script>
 </body>
 </html>
