@@ -178,8 +178,10 @@
 
 /* Verification Code Display */
 .verification-display {
-    margin-top: 8px;
-    text-align: center;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .verification-btn {
@@ -283,4 +285,3 @@
         font-size: 14px;
     }
 }
-
