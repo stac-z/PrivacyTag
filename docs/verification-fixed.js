@@ -1,41 +1,39 @@
+// Verification Code System - PrivacyTag™ LLC
+// This file handles verification code generation, storage, and display
+
 // Show verification code
 function showVerificationCode() {
     console.log('Show verification code clicked');
-    const verificationData = localStorage.getItem(`verification_${currentUsername}`);
+    // Access global currentUsername from script.js
+    const username = window.currentUsername || localStorage.getItem('username') || 'Guest';
+    const verificationData = localStorage.getItem(`verification_${username}`);
     const codeDisplay = document.getElementById('verification-code');
     const showBtn = document.getElementById('show-verification-btn');
     
+    console.log('Username:', username);
     console.log('Verification data:', verificationData);
     console.log('Code display element:', codeDisplay);
     console.log('Show button element:', showBtn);
     
     if (verificationData && codeDisplay && showBtn) {
-        const data = JSON.parse(verificationData);
-        codeDisplay.textContent = data.verificationCode;
-        codeDisplay.classList.remove('hidden');
-        showBtn.textContent = 'Hide Verification Code';
-        showBtn.onclick = hideVerificationCode;
-        console.log('Verification code displayed:', data.verificationCode);
+        try {
+            const data = JSON.parse(verificationData);
+            codeDisplay.textContent = data.verificationCode || 'No code available';
+            codeDisplay.classList.remove('hidden');
+            showBtn.textContent = 'Hide Verification Code';
+            showBtn.onclick = hideVerificationCode;
+            console.log('Verification code displayed:', data.verificationCode);
+        } catch (e) {
+            console.error('Error parsing verification data:', e);
+            codeDisplay.textContent = 'Error loading code';
+            codeDisplay.classList.remove('hidden');
+        }
     } else {
         console.log('Missing elements or data');
-    }
-}
-
-let currentUsername = "defaultUser"; // Replace with dynamic value
-function showVerificationCode() {
-    console.log('Show verification code clicked');
-    const verificationData = localStorage.getItem(`verification_${currentUsername}`);
-    const codeDisplay = document.getElementById('verification-code');
-    const showBtn = document.getElementById('show-verification-btn');
-    if (verificationData && codeDisplay && showBtn) {
-        const data = JSON.parse(verificationData);
-        codeDisplay.textContent = data.verificationCode || 'No code available';
-        codeDisplay.classList.remove('hidden');
-        showBtn.textContent = 'Hide Verification Code';
-        showBtn.onclick = hideVerificationCode;
-        console.log('Verification code displayed:', data.verificationCode);
-    } else {
-        console.log('Missing elements or data');
+        if (codeDisplay) {
+            codeDisplay.textContent = 'No verification code available yet. Click the aura to generate one.';
+            codeDisplay.classList.remove('hidden');
+        }
     }
 }
 
