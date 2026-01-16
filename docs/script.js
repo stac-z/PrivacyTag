@@ -145,40 +145,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Show verification code
-function showVerificationCode() {
-    const verificationData = localStorage.getItem(`verification_${currentUsername}`);
-    const codeDisplay = document.getElementById('verification-code');
-    const showBtn = document.getElementById('show-verification-btn');
-    
-    if (verificationData && codeDisplay && showBtn) {
-        const data = JSON.parse(verificationData);
-        codeDisplay.textContent = data.verificationCode;
-        codeDisplay.classList.remove('hidden');
-        showBtn.textContent = 'Hide Verification Code';
-        showBtn.onclick = hideVerificationCode;
-    }
-}
-
-// Hide verification code
-function hideVerificationCode() {
-    const codeDisplay = document.getElementById('verification-code');
-    const showBtn = document.getElementById('show-verification-btn');
-    
-    if (codeDisplay && showBtn) {
-        codeDisplay.classList.add('hidden');
-        showBtn.textContent = 'Show Verification Code';
-        showBtn.onclick = showVerificationCode;
-    }
-}
-
-// Setup verification button
-function setupVerificationButton() {
-    const showBtn = document.getElementById('show-verification-btn');
-    if (showBtn) {
-        showBtn.addEventListener('click', showVerificationCode);
-    }
-}
+// Verification functions are in verification-fixed.js
 
 // Setup username modal event listeners
 function setupUsernameModal() {
@@ -209,6 +176,8 @@ function setupUsernameModal() {
 
 // Shooting stars are temporary - no need to track count
 let auraPoints = 0;
+// Make currentUsername globally accessible for verification-fixed.js
+window.currentUsername = 'Guest';
 let currentUsername = 'Guest';
 let savedStars = [];
 
@@ -266,6 +235,7 @@ function initializeAuraCounter() {
     const savedUsername = localStorage.getItem('username');
     if (savedUsername) {
         currentUsername = savedUsername;
+        window.currentUsername = savedUsername; // Make globally accessible
         updateUsernameDisplay();
         hideUsernameModal();
         
@@ -283,6 +253,7 @@ function initializeAuraCounter() {
         // Default to 0 points for new users
         auraPoints = 0;
         savedStars = [];
+        window.currentUsername = 'Guest'; // Make globally accessible
     }
     
     updateAuraDisplay();
@@ -323,6 +294,7 @@ function saveUsername() {
     
     if (username && username.length >= 2) {
         currentUsername = username;
+        window.currentUsername = username; // Make globally accessible
         localStorage.setItem('username', currentUsername);
         updateUsernameDisplay();
         hideUsernameModal();
